@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Database {
 	private ArrayList<Book> books = new ArrayList<>();
 	
+	public ArrayList<Book> getBooks() {
+		return books;
+	}
+
 	public void add(Book book) {
 		books.add(book);
 	}

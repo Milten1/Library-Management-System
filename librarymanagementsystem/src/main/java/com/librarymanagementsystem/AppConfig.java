@@ -10,4 +10,14 @@ public class AppConfig {
 	public TUI getUI() {
 		return new TUI();
 	}
+	
+	@Bean
+	public Logic getLogic() {
+		return new Logic();
+	}
+	
+	@Bean
+	public User getUser() {
+		return new Admin("admin","1qaz2wsxa");
+	}
 }

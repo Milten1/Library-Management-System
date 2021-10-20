@@ -2,12 +2,16 @@ package com.librarymanagementsystem;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class TUI {
-	Logic logic = new Logic();
+	
+	@Autowired
+	Logic logic;
 	
 	
 	public void start() {
-		logic.loadBooksFromFile();
+		logic.startProgramLogic();
 		
 		System.out.println("Welcome to the Library Management System!");
 		System.out.println("Enter your command or type 'help' to show commands: ");
@@ -61,8 +65,11 @@ public class TUI {
 			}
 		}
 		
-		logic.saveBookToFile();
+		logic.endProgramLogic();
 		
 		
 	}
+	
+	
+	
 }
