@@ -49,7 +49,7 @@ public class TUI {
 			
 			String[] parts = command.split(" ");
 			
-			switch (parts[0]) {
+			switch (parts[0].toLowerCase()) {
 			case "help":{
 				System.out.println("Commands: \n"
 						+ "'help' - prints all commands \n"
@@ -79,7 +79,10 @@ public class TUI {
 				loginScreen();
 				break;
 			}
-			
+			case "search":{
+				logic.findBook();
+				break;
+			}
 			
 			
 			

@@ -5,11 +5,11 @@ public class Book {
 	private String author;
 	private int ISBN;
 	
-	public Book(String title, String author, int iSBN) {
+	public Book(String title, String author, int ISBN) {
 		super();
 		this.title = title;
 		this.author = author;
-		ISBN = iSBN;
+		this.ISBN = ISBN;
 	}
 	
 	public String getTitle() {
@@ -33,7 +33,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "[title=" + title + ", author=" + author + ", ISBN=" + ISBN + "]";
+		return "[Title = " + title + ", Author = " + author + ", ISBN = " + ISBN + "]";
 	}
 	
 	

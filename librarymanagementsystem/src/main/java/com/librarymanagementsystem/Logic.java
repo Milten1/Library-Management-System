@@ -179,6 +179,47 @@ public class Logic {
 		
 		return false;
 	}
+
+	public void findBook() {
+		System.out.println("Enter title, author or ISBN of the book you are looking for");
+		String info = scanner.next();
+		
+		ArrayList<Book> foundBooks = new ArrayList<>();
+		ArrayList<Book> books = database.getBooks();
+		
+		for(Book book: books) {
+			int isbn = -1;
+			
+			try {
+				isbn = Integer.valueOf(info);
+			} catch (Exception e) {
+				
+			}
+			
+			if(book.getTitle().equals(info)  ||
+			   book.getAuthor().equals(info) ||
+			   book.getISBN() == isbn) foundBooks.add(book);
+		}
+		
+		if(foundBooks.isEmpty()) System.out.println("");
+		else {
+			System.out.println("Books found: ");
+			
+			for(Book book: foundBooks) {
+				System.out.println(book.toString());
+			}
+		}
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	
