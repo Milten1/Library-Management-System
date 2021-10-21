@@ -8,10 +8,32 @@ public class TUI {
 	
 	@Autowired
 	Logic logic;
+	Scanner scanner = new Scanner(System.in);
 	
+	public void loginScreen() {
+		
+		logic.startProgramLogic();
+		
+		while(true) {
+			System.out.println("Enter username or 'exit' to end program");
+			System.out.print("> ");
+			
+			
+			String username = scanner.next();
+			if(logic.userExist(username)) {
+				System.out.println("Enter password");
+				System.out.print("> ");
+				
+				if(logic.passwordIsCorrect(username, scanner.next())) {
+					start();
+				} else System.out.println("Password incorrect");
+			}else System.out.println("User does not exist");
+			
+		}
+
+	}
 	
 	public void start() {
-		logic.startProgramLogic();
 		
 		System.out.println("Welcome to the Library Management System!");
 		System.out.println("Enter your command or type 'help' to show commands: ");
@@ -19,7 +41,6 @@ public class TUI {
 		while(true) {
 			System.out.print("> ");
 			
-			Scanner scanner = new Scanner(System.in);
 			String command = scanner.next();
 			if(command.equals("exit")) break;
 			

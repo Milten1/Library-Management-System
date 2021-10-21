@@ -1,9 +1,14 @@
-package com.librarymanagementsystem;
+package com.librarymanagementsystem.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+import com.librarymanagementsystem.Admin;
+import com.librarymanagementsystem.Logic;
+import com.librarymanagementsystem.TUI;
+import com.librarymanagementsystem.User;
+
+//@Configuration
 public class AppConfig {
 	
 	@Bean

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Logic {
@@ -116,7 +118,7 @@ public class Logic {
 			 }
 			
 		} catch(Exception e){
-            System.out.println("An error occured");
+            System.out.println("An error occured ");
             e.printStackTrace();
         }
 	}
@@ -140,4 +142,30 @@ public class Logic {
 		saveBooksToFile();
 		saveUsersToFile();
 	}
+	
+	
+	
+	
+	
+	
+	public boolean userExist(String username) {
+		Map<String, String> users = database.getUsers();
+		
+		for(String name: users.keySet()) {
+			if(username.equals(name)) return true;
+		}
+		
+		return true;
+	}
+
+	public boolean passwordIsCorrect(String username, String password) {
+		Map<String, String> users = database.getUsers();
+		
+		
+		
+		return true;
+	}
+	
+	
+	
 }
