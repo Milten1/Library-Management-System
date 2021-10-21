@@ -20,6 +20,9 @@ public class TUI {
 			
 			
 			String username = scanner.next();
+			
+			if(username.equals("exit")) break;
+			
 			if(logic.userExist(username)) {
 				System.out.println("Enter password");
 				System.out.print("> ");
@@ -50,7 +53,6 @@ public class TUI {
 			case "help":{
 				System.out.println("Commands: \n"
 						+ "'help' - prints all commands \n"
-						+ "'login {username}' - login as {username} \n"
 						+ "'logout' - logouts \n"
 						+ "'add' - adds a book \n"
 						+ "'list' - lists all books \n"
@@ -73,7 +75,10 @@ public class TUI {
 				logic.list();
 				break;
 			}
-			
+			case "logout":{
+				loginScreen();
+				break;
+			}
 			
 			
 			

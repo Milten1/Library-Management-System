@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class Logic {
 		
 		String[] info = informations.split(",");
 		
-		database.add(new Book(info[0], info[1], Integer.valueOf(info[2])));
+		database.addBook(new Book(info[0], info[1], Integer.valueOf(info[2])));
 	}
 	
 	public void delete() {
@@ -114,7 +115,7 @@ public class Logic {
 			 if(scan.hasNextLine()){
 				 String row = scan.nextLine();
 				 String[] book = row.split(",");
-				 database.add(new Book(book[0], book[1], Integer.valueOf(book[2])));
+				 database.addBook(new Book(book[0], book[1], Integer.valueOf(book[2])));
 			 }
 			
 		} catch(Exception e){
@@ -130,7 +131,17 @@ public class Logic {
 	}
 	
 	public void loadUsersFromFile() {
-		
+		try(Scanner scan  = new Scanner(Paths.get("users.txt"))){
+			 if(scan.hasNextLine()){
+				 String row = scan.nextLine();
+				 String[] data = row.split(",");
+				 database.addUser(new Librarian(data[0], data[1]));
+			 }
+			
+		} catch(Exception e){
+           System.out.println("An error occured ");
+           e.printStackTrace();
+       }
 	}
 	
 	public void startProgramLogic() {
@@ -149,21 +160,24 @@ public class Logic {
 	
 	
 	public boolean userExist(String username) {
-		Map<String, String> users = database.getUsers();
 		
-		for(String name: users.keySet()) {
-			if(username.equals(name)) return true;
+		ArrayList<User> users = database.getUsers();
+		
+		for(User user: users) {
+			if(user.getUsername().equals(username)) return true;
 		}
 		
-		return true;
+		return false;
 	}
 
 	public boolean passwordIsCorrect(String username, String password) {
-		Map<String, String> users = database.getUsers();
+		ArrayList<User> users = database.getUsers();
 		
+		for(User user: users) {
+			if(user.getUsername().equals(username) && user.getPassword().equals(password)) return true;
+		}
 		
-		
-		return true;
+		return false;
 	}
 	
 	

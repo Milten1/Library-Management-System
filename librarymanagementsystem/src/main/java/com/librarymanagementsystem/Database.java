@@ -1,27 +1,31 @@
 package com.librarymanagementsystem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Database {
 	private ArrayList<Book> books = new ArrayList<>();
-	private Map<String, String> users = new HashMap<>();
+//	private Map<String, String> users = new HashMap<>();
+	
+	private ArrayList<User> users = new ArrayList<>();
 	
 	public ArrayList<Book> getBooks() {
 		return books;
 	}	
 
-	public Map<String, String> getUsers() {
+	public ArrayList<User> getUsers() {
 		return users;
 	}
 
-	public void add(Book book) {
+	public void addBook(Book book) {
 		books.add(book);
 	}
 	
-	public void delete(Book book) {
+	public void deleteBook(Book book) {
 		books.remove(book);
+	}
+	
+	public void addUser(User user) {
+		users.add(user);
 	}
 	
 	public void list() {

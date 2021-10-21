@@ -1,9 +1,9 @@
 package com.librarymanagementsystem;
 
-public class Librarian {
+public class Librarian extends User{
 
-	public Librarian() {
-		super();
+	public Librarian(String username, String password) {
+		super(username, password);
 	}
 
 }
