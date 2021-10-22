@@ -19,6 +19,7 @@ public class Logic {
 		String[] info = informations.split(",");
 		
 		database.addBook(new Book(info[0], info[1], Integer.valueOf(info[2])));
+		System.out.println("Book added");
 	}
 	
 	public void removeBook() {
@@ -30,6 +31,7 @@ public class Logic {
 		for(Book book: database.getBooks()) {
 			if(book.getISBN() == isbn) {
 				database.deleteBook(book);
+				System.out.println("Book deleted");
 				break;
 			}
 		}
@@ -52,6 +54,7 @@ public class Logic {
 		 
 		 try {
 			save.createNewFile();
+			new FileWriter("books.txt", false).close();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -84,10 +87,29 @@ public class Logic {
         }
 	}
 	
-	
-	
 	public void saveUsersToFile() {
+		File save = new File("users.txt");
 		
+
+		 try {
+			save.createNewFile();
+			new FileWriter("users.txt", false).close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 
+		 try {
+			 FileWriter saver = new FileWriter("users.txt");
+			 
+			 for(User user: database.getUsers()) {
+				 saver.write(user.getUsername() + "," + user.getPassword() + "," + user.isAdmin() + "\n");
+			 }
+			 
+			 saver.close();
+			 
+		 } catch (IOException e) {
+			 }
 	}
 	
 	public void loadUsersFromFile() {
@@ -113,11 +135,6 @@ public class Logic {
 		saveBooksToFile();
 		saveUsersToFile();
 	}
-	
-	
-	
-	
-	
 	
 	public boolean userExist(String username) {
 		
@@ -176,17 +193,29 @@ public class Logic {
 	}
 
 	public void removeUser() {
+		System.out.println("Enter username of user you want to delete");
+		System.out.print("> ");
+		String username = scanner.next();
 		
+		
+		for(User user: database.getUsers()) {
+			if(user.getUsername().equals(username)) {
+				database.deleteUser(user);
+				System.out.println("User deleted");
+				break;
+			}
+		}
 	}
 
 	public void addUser() {
+		System.out.println("Enter user info in the following format: {username},{password},{isAdmin(true/false)}");
+		System.out.print("> ");
+		String informations = scanner.next();
 		
+		String[] info = informations.split(",");
+		
+		database.addUser(new User(info[0], info[1], Boolean.parseBoolean(info[2])));
+		
+		System.out.println("User added");
 	}
-	
-	
-	
-	
-	
-	
-	
 }

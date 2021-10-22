@@ -38,4 +38,8 @@ public class Database {
 		}
 	}
 	
+	public void deleteUser(User user) {
+		users.remove(user);
+	}
+	
 }
