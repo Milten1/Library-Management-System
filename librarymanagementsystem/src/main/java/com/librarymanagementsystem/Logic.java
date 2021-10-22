@@ -7,6 +7,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Logic {
 	Scanner scanner = new Scanner(System.in);
 	Database database = new Database();

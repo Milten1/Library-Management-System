@@ -1,2 +1,4 @@
 admin,admin,true
 user1,1qaz2wsx,false
+admin,admin,true
+user1,1qaz2wsx,false
