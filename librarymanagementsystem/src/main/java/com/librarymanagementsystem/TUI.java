@@ -10,7 +10,7 @@ public class TUI {
 	Logic logic;
 	Scanner scanner = new Scanner(System.in);
 	
-	public void loginScreen() {
+	public void start() {
 		
 		logic.startProgramLogic();
 		
@@ -27,8 +27,12 @@ public class TUI {
 				System.out.println("Enter password");
 				System.out.print("> ");
 				
-				if(logic.passwordIsCorrect(username, scanner.next())) {
-					start();
+				String password = scanner.next();
+				
+				if(logic.passwordIsCorrect(username, password) && !(logic.isAdmin(username))) {
+					loggedAsUser();
+				} else if(logic.passwordIsCorrect(username, password) && logic.isAdmin(username)) {
+					loggedAsAdmin();
 				} else System.out.println("Password incorrect");
 			}else System.out.println("User does not exist");
 			
@@ -36,8 +40,7 @@ public class TUI {
 
 	}
 	
-	public void start() {
-		
+	public void loggedAsUser() {
 		System.out.println("Welcome to the Library Management System!");
 		System.out.println("Enter your command or type 'help' to show commands: ");
 		
@@ -58,35 +61,78 @@ public class TUI {
 						+ "'list' - lists all books \n"
 						+ "'delete' - deletes a book \n"
 						+ "'search' - searchs for a book \n"
-						+ "'adduser' - adds user [ADMIN COMMAND] \n"
-						+ "'deleteuser' - deletes user [ADMIN COMMAND] \n"
 						+ "'exit' - ends program runtime");
 				break;
 			}
 			case "add":{
-				logic.add();
+				logic.addBook();
 				break;
 			}
 			case "delete":{
-				logic.delete();
+				logic.removeBook();
 				break;
 			}
 			case "list":{
-				logic.list();
+				logic.listBooks();
 				break;
 			}
 			case "logout":{
-				loginScreen();
+				start();
 				break;
 			}
 			case "search":{
 				logic.findBook();
 				break;
 			}
+			default:{
+				System.out.println("Unknown command");
+				break;
+			}
+			}
+		}
+		
+		logic.endProgramLogic();
+	}
+	
+	public void loggedAsAdmin() {
+		System.out.println("Welcome administrator");
+		System.out.println("Enter your command or type 'help' to show commands: ");
+		
+		while(true) {
+			System.out.print("> ");
 			
+			String command = scanner.next();
+			if(command.equals("exit")) break;
 			
+			String[] parts = command.split(" ");
 			
-			
+			switch (parts[0].toLowerCase()) {
+			case "help":{
+				System.out.println("Commands: \n"
+						+ "'help' - prints all commands \n"
+						+ "'logout' - logouts \n"
+						+ "'list' - lists all users \n"
+						+ "'add' - adds user \n"
+						+ "'delet' - deletes user \n"
+						+ "'exit' - ends program runtime");
+				break;
+			}
+			case "add":{
+				logic.addUser();
+				break;
+			}
+			case "delete":{
+				logic.removeUser();
+				break;
+			}
+			case "list":{
+				logic.listUsers();
+				break;
+			}
+			case "logout":{
+				start();
+				break;
+			}
 			default:{
 				System.out.println("Unknown command");
 				break;

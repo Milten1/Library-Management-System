@@ -11,6 +11,6 @@ public class App {
     	ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
     	
         TUI ui = (TUI) context.getBean(TUI.class);
-        ui.loginScreen();
+        ui.start();
     }
 }

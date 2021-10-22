@@ -3,7 +3,6 @@ package com.librarymanagementsystem.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.librarymanagementsystem.Admin;
 import com.librarymanagementsystem.Logic;
 import com.librarymanagementsystem.TUI;
 import com.librarymanagementsystem.User;
@@ -23,6 +22,6 @@ public class AppConfig {
 	
 	@Bean
 	public User getUser() {
-		return new Admin("admin","1qaz2wsxa");
+		return new User("admin","1qaz2wsxa", true);
 	}
 }

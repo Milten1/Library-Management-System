@@ -1,1 +1,2 @@
-user1,1qaz2wsx
+user1,1qaz2wsx,false
+admin,admin,true

@@ -1,13 +1,18 @@
 package com.librarymanagementsystem;
 
-public abstract class User {
-	String username;
-	String password;
+public class User {
+	private String username;
+	private String password;
+	private boolean isAdmin;
 	
-	public User(String username, String password) {
-		super();
+	public User(String username, String password, boolean isAdmin) {
 		this.username = username;
 		this.password = password;
+		this.isAdmin = isAdmin;
+	}
+	
+	public boolean isAdmin() {
+		return isAdmin;
 	}
 
 	public String getUsername() {
@@ -25,6 +30,12 @@ public abstract class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "Username = " + username + ", is admin = " + isAdmin;
+	}
+	
 	
 	
 	
